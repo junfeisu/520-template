@@ -8,6 +8,7 @@ var app = express()
 var mongoose = require('mongoose')
 var model = require('./model/schema').model
 var mongo = require('./model/operate').mongoOperate
+var token = require('./route/token')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'static/dist/')))
 // app.use(formidable)
+
+app.use('/api/get_token', token)
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found')
