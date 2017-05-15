@@ -32,15 +32,15 @@ route.put('/add', function (req, res) {
 })
 
 route.post('/update', function (req, res) {
-  let newTemplateMes = {
-    template_id: req.body.template_id,
-    username: req.body.username,
-    lover_name: req.body.lover_name,
-    experiences: req.body.experiences,
-    photo: req.body.photo
-  }
   var validateResult = validate('template', req.body)
   if (validateResult.value) {
+    let newTemplateMes = {
+      template_id: req.body.template_id,
+      username: req.body.username,
+      lover_name: req.body.lover_name,
+      experiences: req.body.experiences,
+      photo: req.body.photo
+    }
     operate.update(templateModel, ({template_id: req.body.template_id}, {
       $set: newTemplateMes
     }), function (err, template) {
