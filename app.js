@@ -6,9 +6,8 @@ var bodyParser = require('body-parser')
 var cons = require('consolidate')
 var app = express()
 var mongoose = require('mongoose')
-var model = require('./model/schema').model
-var mongo = require('./model/operate').mongoOperate
 var token = require('./route/token')
+var template = require('./route/template')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -17,7 +16,8 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'static/dist/')))
 // app.use(formidable)
 
-app.use('/api/get_token', token)
+app.use('/api/token', token)
+app.use('/api/template', template)
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found')

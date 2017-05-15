@@ -1,6 +1,16 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-mongoose.connect('mongodb://localhost/qzb')
+mongoose.Promise = global.Promise
+var templateGernate = require('./sequence')
+
+var db = mongoose.connect('mongodb://localhost/qzb')
+db.connection.on('error', function (err) {
+  console.log('数据库链接失败:' + err)
+})
+
+db.connection.on('open', function () {
+  console.log('数据库链接成功')
+})
 
 var templateSchema = new Schema({
     username: {
@@ -27,9 +37,9 @@ var templateSchema = new Schema({
         required: true
       },
       date_end: {
-        type: Date,
+        type: String,
         required: false,
-        default: Date.now()
+        default: 'forever'
       },
       recalls: [String]
     }
@@ -38,10 +48,11 @@ var templateSchema = new Schema({
 templateSchema.pre('save', function(next) {
   var self = this
   if (this.isNew) {
-    topicGenerate.increase('Template', function(err, res) {
+    templateGernate.increase('TemplateGenerate', function(err, res) {
       if (err) {
         console.log('err is' + JSON.stringify(err))
       } else{
+        console.log('res is ' + JSON.stringify(res))
         self.template_id = res.value.next
         next()
       }
@@ -51,6 +62,5 @@ templateSchema.pre('save', function(next) {
   }
 })
 
-exports.model = {
-  Template: mongoose.model('Template', templateSchema)
-}
+module.exports = mongoose.model('Template', templateSchema)
+

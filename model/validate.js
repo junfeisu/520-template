@@ -17,8 +17,8 @@ function validate (route, body) {
         result.msg = key + 'is necessary'
       }
     }
+    result.value = true
   } else {
-    result.value = false
     result.msg = 'the data should be an object'
   }
 

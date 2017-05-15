@@ -2,7 +2,7 @@ var express = require('express')
 var getToken = require('../util/qiniu').getToken
 var route = express.Router()
 
-route.get('/token', function (err, res) {
+route.get('/', function (err, res) {
   if (err) {
     res.status(500).json(err)
   } else {
