@@ -60,9 +60,9 @@
               console.log('upload completed')
               let res = JSON.parse(info)
               let domain = up.getOption('domain')
-              res.key = window.btoa(res.key)
-              let sourceLink = 'http://' + domain + '/' + res.key + '?e=' + Date.now()
-              self.$parent.photo = sourceLink
+              let sourceLink = 'http://' + domain + '/'
+              let name = res.key
+              self.getDownToken(sourceLink, name)
             },
             Error (up, err, errTip) {
               console.log('err is' + err)
@@ -74,8 +74,8 @@
           }
         })
       },
-      getToken () {
-        axios.get('/api/token')
+      getUpToken () {
+        axios.get('/api/token/up')
           .then(result => {
             this.upToken = result.data
             this.init()
@@ -83,10 +83,21 @@
           .catch(err => {
             console.log(err)
           })
+      },
+      getDownToken (baseUrl, name) {
+        axios.post('/api/token/down', {
+          url: baseUrl + name
+        })
+          .then(result => {
+            this.$parent.photo = result.data
+          })
+          .catch(err => {
+            console.log(err)
+          })
       }
     },
     mounted () {
-      this.getToken()
+      this.getUpToken()
     }
   }
 </script>
