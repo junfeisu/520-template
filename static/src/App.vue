@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import './../lib/flexible.js'
 export default {
   name: 'app'
 }
