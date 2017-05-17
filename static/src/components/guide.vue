@@ -12,15 +12,17 @@
       <p>俩个人相爱的概率</p>
       <p>又是几千万分之一？</p>
     </div>
-    <div class="step-two"　v-if="step === 2">
-      <p>是什么让我遇见这样的你</p>
-      <p>仿佛光在哪里</p>
-      <p>你就在哪里</p>
-      <p>520 因为是你</p>
-      <p>所以值得被告白</p>
-      <p>制作一份NCU求职帮的告白简历</p>
-      <p>让我们一起心动到古稀</p>
-    </div>
+    <transition name="slide">
+      <div class="step-two"　v-if="step === 2">
+        <p>是什么让我遇见这样的你</p>
+        <p>仿佛光在哪里</p>
+        <p>你就在哪里</p>
+        <p>520 因为是你</p>
+        <p>所以值得被告白</p>
+        <p>制作一份NCU求职帮的告白简历</p>
+        <p>让我们一起心动到古稀</p>
+      </div>
+    </transition>
     <img class="right-flower" src="../assets/image/right-flower.png" alt="">
   </div>
 </template>
@@ -67,7 +69,7 @@
     text-align: center;
     position: relative;
     div {
-      transform: translate(0%, 20%);
+      transform: translate(0%, 10%);
       line-height: 2.5;
     }
     p {
@@ -93,6 +95,13 @@
       position: absolute;
       right: 0.533333rem;
       bottom: 1.0rem;
+    }
+    .slide-enter-active .slide-leave-active {
+      transition: all 10s;
+    }
+
+    .slide-leave .slide-enter-active {
+      transform: translate(0%, 40%);
     }
   }
 </style>
