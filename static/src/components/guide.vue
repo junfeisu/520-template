@@ -40,10 +40,11 @@
       init () {
         let guide = document.querySelector('#guide')
         let hammer = new Hammer(guide)
-        console.log(hammer)
         hammer.on('panleft', () => {
           if (this.step === 1) {
             this.step = 2
+          } else {
+            this.$router.push({name: 'start'})
           }
         })
         hammer.on('panright', () => {

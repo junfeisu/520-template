@@ -1,11 +1,18 @@
 <template>
   <div id="upload">
-    <button type="button" id="pickerfiles"　v-text="text"></button>
+    <!-- <button type="button" id="pickerfiles"　v-text="text"></button> -->
+    <img src="../assets/image/together.png" id="pickerfiles">
   </div>
 </template>
 
 <style lang="scss" scoped>
-  
+  #upload {
+    width: 1.893333rem;
+    height: 1.586667rem;
+    img {
+      width: 100%;
+    }
+  }
 </style>
 
 <script>
@@ -15,7 +22,7 @@
     name: 'upload',
     data () {
       return {
-        text: '上传图片',
+        text: '',
         upToken: '',
         access_key: 'Mnlo7G1Xa5PiY-Oxw_D9vzVIEqjRXKmB4n1uxPg-'
       }
