@@ -1,5 +1,5 @@
 <template>
-  <div class="guide">
+  <div id="guide">
     <img class="top-flower" v-if="step===1" src="../assets/image/top-flower.png">
     <img class="left-flower" src="../assets/image/left-flower.png"></img>
     <div class="step-one" v-if="step===1">
@@ -26,38 +26,55 @@
 </template>
 
 <script>
+  import Hammer from './../../lib/hammer'
   export default {
-    name: 'hello',
+    name: 'guide',
     data () {
       return {
         step: 1
       }
     },
+    methods: {
+      init () {
+        let guide = document.querySelector('#guide')
+        let hammer = new Hammer(guide)
+        console.log(hammer)
+        hammer.on('panleft', () => {
+          if (this.step === 1) {
+            this.step = 2
+          }
+        })
+        hammer.on('panright', () => {
+          if (this.step === 2) {
+            this.step = 1
+          }
+        })
+      }
+    },
     mounted () {
+      this.init()
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .guide {
+  #guide {
     flex: 1 0 auto;
-    flex-wrap: wrap;
     padding: 0.533333rem;
     font-size: 0.44rem;
     color: #eb7b7b;
     text-align: center;
     position: relative;
-    padding: 0.533333rem;
     div {
-      transform: translate(0%, 25%);
+      transform: translate(0%, 20%);
       line-height: 2.5;
     }
     p {
       margin: 0;
     }
     .step-two {
-      transform: translate(0%, 50%);
+      transform: translate(0%, 40%);
     }
     .top-flower {
       width: 7.986667rem;

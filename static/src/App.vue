@@ -15,9 +15,14 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+}
 body {
-  height: 17.58rem;
+  height: 100%;
   background: #f4dddd;
+  margin: 0;
+  padding: 0;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -29,13 +34,14 @@ body {
 }
 
 footer {
-  width: 100%;
   height: 0.96rem;
   text-align: center;
   line-height: 0.96rem;
   background: #050001;
   position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
   opacity: 0.4;
   font-size: 0.44rem;
   color: #fff;
