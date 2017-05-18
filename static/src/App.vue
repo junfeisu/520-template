@@ -11,12 +11,7 @@
 <script>
   import './../lib/flexible.js'
   export default {
-    name: 'app',
-    methods: {
-      add (data) {
-        this.$root.$children[0].addRemind(data)
-      }
-    }
+    name: 'app'
   }
 </script>
 

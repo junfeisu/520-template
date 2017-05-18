@@ -107,7 +107,7 @@
             this.showModal = true
           })
           .catch(err => {
-            this.$root.add({type: 'error', msg: err.data})
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       updateTemplate () {
