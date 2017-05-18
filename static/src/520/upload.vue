@@ -39,12 +39,6 @@
           domain: 'opzuvzih3.bkt.clouddn.com',
           max_file_size: '5mb',
           max_retries: 3,
-          filters: {
-            mime_types: [{
-              title: 'Image files',
-              extensions: 'jpg,jpeg,png,gif'
-            }]
-          },
           auto_start: true,
           multi_selection: false,
           save_key: false,
