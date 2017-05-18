@@ -1,7 +1,7 @@
 var typeCheck = require('../util/type')
 
 var validateInfo = {
-  'template': ['username', 'lover_name', 'photo', 'experiences']
+  'template': ['username', 'lover_name', 'photo', 'experiences', 'profess']
 }
 
 function validate (route, body) {

@@ -42,6 +42,10 @@ var templateSchema = new Schema({
         default: 'forever'
       },
       recalls: [String]
+    },
+    profess: {
+      type: String,
+      required: true
     }
   }, {versionKey: false})
 

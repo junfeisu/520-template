@@ -39,7 +39,8 @@ route.post('/update', function (req, res) {
       username: req.body.username,
       lover_name: req.body.lover_name,
       experiences: req.body.experiences,
-      photo: req.body.photo
+      photo: req.body.photo,
+      profess: req.body.profess
     }
     operate.update(templateModel, ({template_id: req.body.template_id}, {
       $set: newTemplateMes
