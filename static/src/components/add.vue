@@ -55,6 +55,7 @@
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
       </div>
+      <button id="onMenuShareTimeline">分享520-简历</button>
       </div>
       <div class="share-modal" v-if="showModal"></div>
     </div>
