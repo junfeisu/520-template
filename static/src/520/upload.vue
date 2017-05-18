@@ -73,7 +73,7 @@
               self.getDownToken(sourceLink, name)
             },
             Error (up, err, errTip) {
-              console.log('err is' + err)
+              this.$root.add({type: 'error', msg: err})
             },
             Key (up, file) {
               var key = new Date().getTime() + '-' + file.name
@@ -89,7 +89,7 @@
             this.init()
           })
           .catch(err => {
-            console.log(err)
+            this.$root.add({type: 'error', msg: err.data})
           })
       },
       getDownToken (baseUrl, name) {
@@ -100,7 +100,7 @@
             this.$parent.template.photo = result.data
           })
           .catch(err => {
-            console.log(err)
+            this.$root.add({type: 'error', msg: err.data})
           })
       }
     },

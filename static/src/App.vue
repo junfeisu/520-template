@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <remind></remind>
     <router-view></router-view>
     <footer v-if="$route.path !== '/add'">
       <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext">NCU求职帮</a>
@@ -10,7 +11,12 @@
 <script>
   import './../lib/flexible.js'
   export default {
-    name: 'app'
+    name: 'app',
+    methods: {
+      add (data) {
+        this.$root.$children[0].addRemind(data)
+      }
+    }
   }
 </script>
 

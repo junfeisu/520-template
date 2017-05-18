@@ -66,7 +66,6 @@
 </template>
 
 <script>
-  import upload from './../520/upload.vue'
   import axios from 'axios'
   export default {
     name: 'add',
@@ -91,9 +90,6 @@
         addSuccess: false
       }
     },
-    components: {
-      upload
-    },
     methods: {
       getTemplate (templateId) {
         axios.get('/api/template?template_id=' + templateId)
@@ -102,25 +98,27 @@
             this.template.experiences.date_start = this.template.experiences.date_start.split('T')[0]
           })
           .catch(err => {
-            console.log(err)
+            this.$root.add({type: 'error', msg: err.data})
           })
       },
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
             this.addSuccess = true
+            this.$root.add({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
           })
-          .catch(error => {
-            console.log(error)
+          .catch(err => {
+            this.$root.add({type: 'error', msg: err.data})
           })
       },
       updateTemplate () {
         axios.post('/api/template/update', this.template)
           .then(result => {
             this.addSuccess = true
+            this.$root.add({type: 'success', msg: '修改简历成功'})
           })
           .catch(err => {
-            console.log(err)
+            this.$root.add({type: 'error', msg: err.data})
           })
       },
       cancel () {
