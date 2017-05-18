@@ -157,18 +157,19 @@
               signature: result.data.signature,
               jsApiList: ['onMenuShareTimeline']
             })
-            wx.onMenuShareTimeline({
-              title: '分享520-简历',
-              link: 'ncuqzb.ncuos.com',
-              imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
-              success: function () {
-                alert('success')
-              },
-              cancel: function () {
-                alert('cancel')
-              }
+            wx.ready(() => {
+              wx.onMenuShareTimeline({
+                title: '分享520-简历',
+                link: 'ncuqzb.ncuos.com',
+                imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+                success: function () {
+                  this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+                },
+                cancel: function () {
+                  this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+                }
+              })
             })
-            console.log(wx)
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
