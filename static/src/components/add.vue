@@ -147,7 +147,7 @@
         this.template.experiences.recalls.splice(index, 1)
       },
       getConf () {
-        axios.get('/api/conf?url=' + location.path)
+        axios.get('/api/conf?url=' + window.location.path)
           .then(result => {
             wx.config({
               debug: true,
