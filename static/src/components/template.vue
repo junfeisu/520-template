@@ -34,7 +34,6 @@
 
 <script>
   import axios from 'axios'
-  const wx = require('weixin-js-sdk')
   export default {
     name: 'template',
     data () {
@@ -53,35 +52,6 @@
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
-      getConf () {
-        axios.get('/api/conf')
-          .then(result => {
-            wx.config({
-              debug: true,
-              appId: 'wxc384c224cbf19404',
-              timestamp: result.data.timestamp,
-              nonceStr: result.data.noncestr,
-              signature: result.data.signature,
-              jsApiList: ['onMenuShareTimeline']
-            })
-            wx.onMenuShareTimeline({
-              title: '分享520-简历',
-              link: 'ncuqzb.ncuos.com',
-              imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
-              success: function () {
-                alert('success')
-              },
-              cancel: function () {
-                alert('cancel')
-              }
-            })
-
-            this.getTemplate(this.$route.query.template_id)
-          })
-          .catch(err => {
-            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
-          })
-      },
       reWrite () {
         this.$router.push({
           name: 'add',
@@ -92,7 +62,7 @@
       }
     },
     mounted () {
-      this.getConf()
+      this.getTemplate(this.$route.query.template_id)
     }
   }
 </script>

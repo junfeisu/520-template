@@ -54,10 +54,6 @@
           提交
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
-        <!-- <button v-if="addSuccess" type="button" class="show-affection" @click="showAffection()">
-          秀恩爱
-          <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
-        </button> -->
       </div>
       </div>
       <div class="share-modal" v-if="showModal"></div>
@@ -66,6 +62,7 @@
 </template>
 
 <script>
+  const wx = require('weixin-js-sdk')
   import axios from 'axios'
   export default {
     name: 'add',
@@ -105,6 +102,7 @@
           .then(template => {
             this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
             this.showModal = true
+            this.getConf()
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
@@ -148,9 +146,34 @@
       deleteRecall (index) {
         this.template.experiences.recalls.splice(index, 1)
       },
-      // showAffection () {
-      //   this.showModal = true
-      // },
+      getConf () {
+        axios.get('/api/conf?url=' + location.path)
+          .then(result => {
+            wx.config({
+              debug: true,
+              appId: 'wxc384c224cbf19404',
+              timestamp: result.data.timestamp,
+              nonceStr: result.data.noncestr,
+              signature: result.data.signature,
+              jsApiList: ['onMenuShareTimeline']
+            })
+            wx.onMenuShareTimeline({
+              title: '分享520-简历',
+              link: 'ncuqzb.ncuos.com',
+              imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+              success: function () {
+                alert('success')
+              },
+              cancel: function () {
+                alert('cancel')
+              }
+            })
+            console.log(wx)
+          })
+          .catch(err => {
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
+          })
+      },
       submit () {
         if (this.$route.query.template_id) {
           this.updateTemplate()
