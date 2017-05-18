@@ -1,5 +1,4 @@
 var qiniu = require('qiniu')
-var crypto = require('crypto')
 
 qiniu.conf.ACCESS_KEY = 'Mnlo7G1Xa5PiY-Oxw_D9vzVIEqjRXKmB4n1uxPg-'
 qiniu.conf.SECRET_KEY = 'aG9p_jQru8bQy7e_XY91WXYv1t2ObDms9VvT6zzf'
