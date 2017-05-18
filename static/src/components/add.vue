@@ -102,7 +102,6 @@
           .then(template => {
             this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
             this.showModal = true
-            this.getConf()
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
@@ -187,6 +186,7 @@
       if (this.$route.query.template_id) {
         this.getTemplate(this.$route.query.template_id)
       }
+      this.getConf()
     }
   }
 </script>
