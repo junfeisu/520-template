@@ -190,7 +190,7 @@
           }
         })
       })
-    }
+    },
     mounted () {
       if (this.$route.query.template_id) {
         this.getTemplate(this.$route.query.template_id)
