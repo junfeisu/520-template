@@ -5,6 +5,8 @@ var axios = require('axios')
 var appId = 'wxc384c224cbf19404'
 var sha1 = require('sha1')
 var appSecret = '8d8a19ad25664293258f6eb1f315a43d'
+var generateTime = ''
+var ticket = ''
 
 function getToken (url, res) {
   axios.get('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + appId + '&secret=' + appSecret)
@@ -22,6 +24,8 @@ function getToken (url, res) {
 function getTicket (token, url, res) {
   axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + token + '&type=jsapi')
     .then(function (result) {
+      generateTime = Math.floor(Date.now() / 1000)
+      ticket = result.data.ticket
       generateSignature(result.data.ticket, url, res)
     })
     .catch(function (err) {
@@ -47,7 +51,12 @@ function generateSignature (ticket, url, res) {
 }
 
 route.get('/', function (req, res) {
-  getToken(req.query.url, res)
+  let timeGap = Math.floor(Date.now() / 1000) - generateTime
+  if (!ticket || timeGap > 7200) {
+    getToken(req.query.url, res)
+  } else {
+    generateSignature(ticket, req.url, res)
+  }
 })
 
 module.exports = route

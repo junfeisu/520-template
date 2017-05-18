@@ -169,7 +169,7 @@
     },
     beforeMount () {
       wx.config({
-        debug: true,
+        debug: false,
         appId: 'wxc384c224cbf19404',
         timestamp: this.conf.timestamp,
         nonceStr: this.conf.noncestr,
