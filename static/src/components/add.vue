@@ -84,8 +84,7 @@
         isEdit: false,
         currentIndex: '',
         currentRecall: '',
-        showModal: false,
-        conf: {}
+        showModal: false
       }
     },
     methods: {
@@ -150,7 +149,14 @@
       getConf () {
         axios.get('/api/conf?url=' + window.location.href)
           .then(result => {
-            this.conf = result.data
+            wx.config({
+              debug: true,
+              appId: 'wxc384c224cbf19404',
+              timestamp: result.data.timestamp,
+              nonceStr: result.data.noncestr,
+              signature: result.data.signature,
+              jsApiList: ['onMenuShareTimeline']
+            })
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
@@ -168,14 +174,6 @@
       this.getConf()
     },
     beforeMount () {
-      wx.config({
-        debug: false,
-        appId: 'wxc384c224cbf19404',
-        timestamp: this.conf.timestamp,
-        nonceStr: this.conf.noncestr,
-        signature: this.conf.signature,
-        jsApiList: ['onMenuShareTimeline']
-      })
       wx.ready(() => {
         alert('ready')
         wx.onMenuShareTimeline({
