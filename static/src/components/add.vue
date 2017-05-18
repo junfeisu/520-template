@@ -268,7 +268,7 @@
       .add-recall {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         font-size: 0.44rem;
         margin-top: 0.2rem;
         cursor: pointer;

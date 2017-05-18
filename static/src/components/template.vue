@@ -64,7 +64,18 @@
               signature: result.data.signature,
               jsApiList: ['onMenuShareTimeline']
             })
-            console.log(wx)
+            wx.onMenuShareTimeline({
+              title: '分享520-简历',
+              link: 'ncuqzb.ncuos.com',
+              imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+              success: function () {
+                alert('success')
+              },
+              cancel: function () {
+                alert('cancel')
+              }
+            })
+
             this.getTemplate(this.$route.query.template_id)
           })
           .catch(err => {
