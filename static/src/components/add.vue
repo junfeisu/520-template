@@ -227,6 +227,8 @@
         background: #f4dddd;
         outline: none;
         margin-top: 0.2rem;
+        color: #eb7b7b;
+        text-align: center;
         &::-webkit-input-placeholder {
           color: #eb7b7b;
           text-align: center;
