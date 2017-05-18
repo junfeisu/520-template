@@ -59,7 +59,9 @@ route.post('/update', function (req, res) {
       }
     })
   } else {
-    res.status(403).json(validateResult.msg)
+    res.status(403).json({
+      message: validateResult.msg
+    })
   }
 })
 

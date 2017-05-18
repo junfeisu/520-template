@@ -67,7 +67,7 @@
               self.getDownToken(sourceLink, name)
             },
             Error (up, err, errTip) {
-              this.$root.add({type: 'error', msg: err})
+              this.$parent.$parent.$children[0].addRemind({type: 'error', msg: err})
             },
             Key (up, file) {
               var key = new Date().getTime() + '-' + file.name
@@ -83,7 +83,7 @@
             this.init()
           })
           .catch(err => {
-            this.$root.add({type: 'error', msg: err.data})
+            this.$parent.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       getDownToken (baseUrl, name) {
@@ -94,7 +94,7 @@
             this.$parent.template.photo = result.data
           })
           .catch(err => {
-            this.$root.add({type: 'error', msg: err.data})
+            this.$parent.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       }
     },

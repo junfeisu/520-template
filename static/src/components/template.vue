@@ -50,7 +50,7 @@
             this.template.experiences.date_start = this.template.experiences.date_start.split('T')[0]
           })
           .catch(err => {
-            console.log(err)
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       getConf () {
@@ -79,7 +79,7 @@
             this.getTemplate(this.$route.query.template_id)
           })
           .catch(err => {
-            console.log(err)
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
           })
       },
       reWrite () {

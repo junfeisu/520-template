@@ -97,13 +97,13 @@
             this.template.experiences.date_start = this.template.experiences.date_start.split('T')[0]
           })
           .catch(err => {
-            this.$root.add({type: 'error', msg: err.data})
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
-            this.$root.add({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
+            this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
             this.showModal = true
           })
           .catch(err => {
@@ -114,10 +114,10 @@
         axios.post('/api/template/update', this.template)
           .then(result => {
             this.addSuccess = true
-            this.$root.add({type: 'success', msg: '修改简历成功'})
+            this.$parent.$children[0].addRemind({type: 'success', msg: '修改简历成功'})
           })
           .catch(err => {
-            this.$root.add({type: 'error', msg: err.data})
+            this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       cancel () {

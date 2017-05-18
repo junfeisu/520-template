@@ -8,7 +8,9 @@ route.get('/up', function (req, res) {
   if (upToken) {
     res.send(upToken)
   } else {
-    res.status(400).json('get token error')
+    res.status(400).json({
+      message: 'get token error'
+    })
   }
 })
 
@@ -19,7 +21,9 @@ route.post('/down', function (req, res) {
       res.send(downToken)
     }
   } else {
-    res.status(400).json('the url param is necessary and not null')
+    res.status(400).json({
+      message: 'the url param is necessary and not null'
+    })
   }
 })
 
