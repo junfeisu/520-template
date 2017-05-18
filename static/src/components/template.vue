@@ -34,7 +34,7 @@
 
 <script>
   import axios from 'axios'
-  // import wx from '../../lib/weixin'
+  const wx = require('weixin-js-sdk')
   export default {
     name: 'template',
     data () {
@@ -56,17 +56,16 @@
       getConf () {
         axios.get('/api/conf')
           .then(result => {
-            console.log(result.data)
-            // wx.conf({
-            //   debug: true,
-            //   appId: 'wxc384c224cbf19404',
-            //   timestamp: result.data.timestamp,
-            //   nonceStr: result.data.noncestr,
-            //   signature: result.data.signature,
-            //   jsApiList: []
-            // })
-            // console.log(wx)
-            // this.getTemplate(this.$route.query.template_id)
+            wx.config({
+              debug: true,
+              appId: 'wxc384c224cbf19404',
+              timestamp: result.data.timestamp,
+              nonceStr: result.data.noncestr,
+              signature: result.data.signature,
+              jsApiList: []
+            })
+            console.log(wx)
+            this.getTemplate(this.$route.query.template_id)
           })
           .catch(err => {
             console.log(err)

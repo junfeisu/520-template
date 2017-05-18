@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import guide from '@/components/guide'
-import start from '@/components/start'
-import add from '@/components/add'
-import template from '@/components/template'
 
 Vue.use(Router)
 
@@ -11,18 +7,34 @@ export default new Router({
   routes: [{
     path: '/',
     name: 'guide',
-    component: guide
+    component: resolve => {
+      require.ensure(['@/components/guide.vue'], () => {
+        resolve(require('@/components/guide.vue'))
+      })
+    }
   }, {
     path: '/start',
     name: 'start',
-    component: start
+    component: resolve => {
+      require.ensure(['@/components/start.vue'], () => {
+        resolve(require('@/components/start.vue'))
+      })
+    }
   }, {
     path: '/add',
     name: 'add',
-    component: add
+    component: resolve => {
+      require.ensure(['@/components/add.vue'], () => {
+        resolve(require('@/components/add.vue'))
+      })
+    }
   }, {
     path: '/template',
     name: 'template',
-    component: template
+    component: resolve => {
+      require.ensure(['@/components/template.vue'], () => {
+        resolve(require('@/components/template.vue'))
+      })
+    }
   }]
 })

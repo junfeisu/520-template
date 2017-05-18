@@ -10,10 +10,7 @@
 <script>
   import './../lib/flexible.js'
   export default {
-    name: 'app',
-    mounted () {
-      console.log(this.$route.path)
-    }
+    name: 'app'
   }
 </script>
 
