@@ -49,11 +49,18 @@
         <div class="profess-title">致恋人，你有什么爱的告白</div>
         <textarea name="profess" v-model="template.profess"></textarea>
       </div>
-      <button type="button" class="submit" @click="addTemplate()">
-        提交
-        <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
-        <img class="add-cursor" src="../assets/image/cursor.png" height="105" width="101" alt="">
-      </button>
+      <div class="add-operate">
+        <button v-if="!addSuccess" type="button" class="submit" @click="addTemplate()">
+          提交
+          <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
+        </button>
+        <button v-if="addSuccess" type="button" class="show-affection" @click="showAffection()">
+          秀恩爱
+          <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
+        </button>
+      </div>
+      </div>
+      <div class="share-modal" v-if="showModal"></div>
     </div>
   </div>
 </template>
@@ -79,7 +86,9 @@
         showEdit: false,
         isEdit: false,
         currentIndex: '',
-        currentRecall: ''
+        currentRecall: '',
+        showModal: false,
+        addSuccess: false
       }
     },
     components: {
@@ -89,7 +98,7 @@
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
-            this.$router.push({name: 'template', query: {template_id: template.data.template_id}})
+            this.addSuccess = true
           })
           .catch(error => {
             console.log(error)
@@ -141,6 +150,9 @@
       },
       deleteRecall (index) {
         this.template.experiences.recalls.splice(index, 1)
+      },
+      showAffection () {
+        this.showModal = true
       }
     },
     mounted () {
@@ -295,32 +307,30 @@
     .small-top {
       margin-top: 0.3rem;
     }
-    .submit {
+    .add-operate {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
       margin-top: 0.2rem;
-      width: 2.56rem;
-      height: 0.946667rem;
-      box-shadow: 0 0.173333rem 0.76rem 0.026667rem rgba(0, 0, 0, .14);
-      color: #eb7b7b;
-      background: #fff;
-      position: relative;
-      border: none;
-      outline: none;
-      line-height: 0.94rem;
-      border-radius: 0.586667rem;
-      font-size: 0.56rem;
-      .add-btn-heart {
-        position: absolute;
-        left: -0.493333rem;
-        top: -0.393333rem;
-        width: 1.186667rem;
-        height: 1.266667rem;
-      }
-      .add-cursor {
-        width: 0.946667rem;
+      button {
+        width: 2.56rem;
         height: 0.946667rem;
-        position: absolute;
-        right: -0.4rem;
-        bottom: -0.4rem;
+        box-shadow: 0 0.173333rem 0.76rem 0.026667rem rgba(0, 0, 0, .14);
+        color: #eb7b7b;
+        background: #fff;
+        position: relative;
+        border: none;
+        outline: none;
+        line-height: 0.94rem;
+        border-radius: 0.586667rem;
+        font-size: 0.56rem;
+        .add-btn-heart {
+          position: absolute;
+          left: -0.493333rem;
+          top: -0.393333rem;
+          width: 1.186667rem;
+          height: 1.266667rem;
+        }
       }
     }
   }
@@ -344,6 +354,20 @@
     img {
       width: 100%;
     }
+  }
+
+  .share-modal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .7);
+    background-image: url('./../assets/image/share-modal.png');
+    background-size: 7.773333rem 5.373333rem;
+    background-repeat: no-repeat;
+    background-position: 50% 10%;
+    z-index: 999;
   }
 
   .clear {

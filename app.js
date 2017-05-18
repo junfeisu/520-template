@@ -8,6 +8,7 @@ var app = express()
 var mongoose = require('mongoose')
 var token = require('./route/token')
 var template = require('./route/template')
+var weixin = require('./route/weixin_conf')
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'static/dist/')))
 
 app.use('/api/token', token)
 app.use('/api/template', template)
+app.use('/api/conf', weixin)
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found')

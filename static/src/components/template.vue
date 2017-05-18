@@ -27,7 +27,6 @@
     </div>
     <div class="template-operate">
       <button type="button">重新写</button>
-      <button type="button">秀恩爱</button>
     </div>
     <img class="template-footer" src="./.././assets/image/template-footer.png" alt="">
   </div>
@@ -35,6 +34,7 @@
 
 <script>
   import axios from 'axios'
+  // import wx from '../../lib/weixin'
   export default {
     name: 'template',
     data () {
@@ -52,10 +52,29 @@
           .catch(err => {
             console.log(err)
           })
+      },
+      getConf () {
+        axios.get('/api/conf')
+          .then(result => {
+            console.log(result.data)
+            // wx.conf({
+            //   debug: true,
+            //   appId: 'wxc384c224cbf19404',
+            //   timestamp: result.data.timestamp,
+            //   nonceStr: result.data.noncestr,
+            //   signature: result.data.signature,
+            //   jsApiList: []
+            // })
+            // console.log(wx)
+            // this.getTemplate(this.$route.query.template_id)
+          })
+          .catch(err => {
+            console.log(err)
+          })
       }
     },
     mounted () {
-      this.getTemplate(this.$route.query.template_id)
+      this.getConf()
     }
   }
 </script>
@@ -163,6 +182,7 @@
     .template-footer {
       width: 4.986667rem;
       height: 0.813333rem;
+      margin-top: 0.1rem;
     }
   }
 </style>
