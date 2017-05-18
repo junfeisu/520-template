@@ -50,7 +50,7 @@
         <textarea name="profess" v-model="template.profess"></textarea>
       </div>
       <div class="add-operate">
-        <button v-if="!addSuccess" type="button" class="submit" @click="addTemplate()">
+        <button v-if="!addSuccess" type="button" class="submit" @click="submit()">
           提交
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
@@ -95,6 +95,16 @@
       upload
     },
     methods: {
+      getTemplate (templateId) {
+        axios.get('/api/template?template_id=' + templateId)
+          .then(template => {
+            this.template = template.data
+            this.template.experiences.date_start = this.template.experiences.date_start.split('T')[0]
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      },
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
@@ -105,19 +115,9 @@
           })
       },
       updateTemplate () {
-        axios.post('/api/template/update', {
-          template_id: 1,
-          username: '苏俊飞',
-          lover_name: '靳晶晶',
-          photo: '234',
-          experiences: {
-            date_start: '2016-02-14',
-            date_end: 'forever',
-            recalls: ['1']
-          }
-        })
+        axios.post('/api/template/update', this.template)
           .then(result => {
-            console.log(result.data)
+            this.addSuccess = true
           })
           .catch(err => {
             console.log(err)
@@ -153,10 +153,19 @@
       },
       showAffection () {
         this.showModal = true
+      },
+      submit () {
+        if (this.$route.query.template_id) {
+          this.updateTemplate()
+        } else {
+          this.addTemplate()
+        }
       }
     },
     mounted () {
-      // this.init()
+      if (this.$route.query.template_id) {
+        this.getTemplate(this.$route.query.template_id)
+      }
     }
   }
 </script>
@@ -259,7 +268,7 @@
       .add-recall {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         font-size: 0.44rem;
         margin-top: 0.2rem;
         cursor: pointer;
@@ -357,7 +366,7 @@
   }
 
   .share-modal {
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;

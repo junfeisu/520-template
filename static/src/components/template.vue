@@ -25,8 +25,8 @@
       <img class="template-flower" src="../assets/image/template-flower.png">
       <img class="tap-longtime" src="../assets/image/tap-longtime.png" alt="">
     </div>
-    <div class="template-operate">
-      <button type="button">重新写</button>
+    <div class="template-operate" v-if="template.template_id">
+      <button type="button" @click="reWrite()">重新写</button>
     </div>
     <img class="template-footer" src="./.././assets/image/template-footer.png" alt="">
   </div>
@@ -62,7 +62,7 @@
               timestamp: result.data.timestamp,
               nonceStr: result.data.noncestr,
               signature: result.data.signature,
-              jsApiList: []
+              jsApiList: ['onMenuShareTimeline']
             })
             console.log(wx)
             this.getTemplate(this.$route.query.template_id)
@@ -70,6 +70,14 @@
           .catch(err => {
             console.log(err)
           })
+      },
+      reWrite () {
+        this.$router.push({
+          name: 'add',
+          query: {
+            template_id: this.template.template_id
+          }
+        })
       }
     },
     mounted () {
