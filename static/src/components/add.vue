@@ -157,6 +157,7 @@
               jsApiList: ['onMenuShareTimeline']
             })
             wx.ready(() => {
+              alert('ready')
               wx.onMenuShareTimeline({
                 title: '分享520-简历',
                 link: 'ncuqzb.ncuos.com',
@@ -182,11 +183,13 @@
         }
       }
     },
+    created () {
+      this.getConf()
+    },
     mounted () {
       if (this.$route.query.template_id) {
         this.getTemplate(this.$route.query.template_id)
       }
-      this.getConf()
     }
   }
 </script>
