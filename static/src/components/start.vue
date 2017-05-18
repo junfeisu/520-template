@@ -5,7 +5,7 @@
       <button type="button" class="start-btn">
         开始制作
         <img class="start-flower" src="../assets/image/start-flower.png"alt="">
-        <img class="start-cursor" src="../assets/image/cursor.png" height="105" width="101"alt="">
+        <img class="start-cursor" src="../assets/image/cursor.png" alt="">
       </button>
     </div>
   </div>

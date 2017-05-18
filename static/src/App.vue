@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <footer>
+    <footer v-if="$route.path !== '/add'">
       NCU求职帮
     </footer>
   </div>
 </template>
 
 <script>
-import './../lib/flexible.js'
-export default {
-  name: 'app'
-}
+  import './../lib/flexible.js'
+  export default {
+    name: 'app',
+    mounted () {
+      console.log(this.$route.path)
+    }
+  }
 </script>
 
 <style>
@@ -42,7 +45,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.4;
+  opacity: 0.2;
   font-size: 0.44rem;
   color: #fff;
 }

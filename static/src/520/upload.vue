@@ -29,6 +29,7 @@
     },
     methods: {
       init () {
+        window.URL = window.URL || window.webkitURL
         let self = this
         Qiniu.uploader({
           runtimes: 'html5,flash,html4',
@@ -52,7 +53,7 @@
             FilesAdded (up, files) {
               console.log('fileAdded')
             },
-            BeforeUpload () {
+            BeforeUpload (up, file) {
               console.log('beforeUpload')
             },
             UploadProgress (up, file) {
@@ -96,7 +97,7 @@
           url: baseUrl + name
         })
           .then(result => {
-            this.$parent.photo = result.data
+            this.$parent.template.photo = result.data
           })
           .catch(err => {
             console.log(err)
