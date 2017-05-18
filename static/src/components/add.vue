@@ -84,7 +84,8 @@
         isEdit: false,
         currentIndex: '',
         currentRecall: '',
-        showModal: false
+        showModal: false,
+        conf: {}
       }
     },
     methods: {
@@ -149,28 +150,7 @@
       getConf () {
         axios.get('/api/conf?url=' + window.location.href)
           .then(result => {
-            wx.config({
-              debug: true,
-              appId: 'wxc384c224cbf19404',
-              timestamp: result.data.timestamp,
-              nonceStr: result.data.noncestr,
-              signature: result.data.signature,
-              jsApiList: ['onMenuShareTimeline']
-            })
-            wx.ready(() => {
-              alert('ready')
-              wx.onMenuShareTimeline({
-                title: '分享520-简历',
-                link: 'ncuqzb.ncuos.com',
-                imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
-                success: function () {
-                  this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
-                },
-                cancel: function () {
-                  this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
-                }
-              })
-            })
+            this.conf = result.data
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.errMsg})
@@ -187,6 +167,30 @@
     created () {
       this.getConf()
     },
+    beforeMount () {
+      wx.config({
+        debug: true,
+        appId: 'wxc384c224cbf19404',
+        timestamp: this.conf.timestamp,
+        nonceStr: this.conf.noncestr,
+        signature: this.conf.signature,
+        jsApiList: ['onMenuShareTimeline']
+      })
+      wx.ready(() => {
+        alert('ready')
+        wx.onMenuShareTimeline({
+          title: '分享520-简历',
+          link: 'ncuqzb.ncuos.com',
+          imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+          success: function () {
+            this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+          },
+          cancel: function () {
+            this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+          }
+        })
+      })
+    }
     mounted () {
       if (this.$route.query.template_id) {
         this.getTemplate(this.$route.query.template_id)
