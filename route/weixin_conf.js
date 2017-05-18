@@ -43,6 +43,7 @@ function generateSignature (ticket, url, res) {
   var string = 'jsapi_ticket=' + ticket + '&noncestr=' + noncestr + '&timestamp=' +
     timestamp + '&url=' + encodeURI(url)
   var signature = sha1(string)
+  console.log(signature)
   res.json({
     timestamp: timestamp,
     noncestr: noncestr,
@@ -55,6 +56,7 @@ route.get('/', function (req, res) {
   if (!ticket || timeGap > 7200) {
     getToken(req.query.url, res)
   } else {
+    console.log(ticket)
     generateSignature(ticket, req.url, res)
   }
 })
