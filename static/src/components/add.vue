@@ -54,10 +54,10 @@
           提交
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
-        <button v-if="addSuccess" type="button" class="show-affection" @click="showAffection()">
+        <!-- <button v-if="addSuccess" type="button" class="show-affection" @click="showAffection()">
           秀恩爱
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
-        </button>
+        </button> -->
       </div>
       </div>
       <div class="share-modal" v-if="showModal"></div>
@@ -106,6 +106,7 @@
           .then(template => {
             this.addSuccess = true
             this.$root.add({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
+            this.showModal = true
           })
           .catch(err => {
             this.$root.add({type: 'error', msg: err.data})
@@ -149,9 +150,9 @@
       deleteRecall (index) {
         this.template.experiences.recalls.splice(index, 1)
       },
-      showAffection () {
-        this.showModal = true
-      },
+      // showAffection () {
+      //   this.showModal = true
+      // },
       submit () {
         if (this.$route.query.template_id) {
           this.updateTemplate()
@@ -317,7 +318,7 @@
     .add-operate {
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
       margin-top: 0.2rem;
       button {
         width: 2.56rem;
