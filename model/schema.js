@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 mongoose.Promise = global.Promise
 var templateGernate = require('./sequence')
 
-var db = mongoose.connect('mongodb://localhost/qzb')
+var db = mongoose.connect('mongodb://ncuqzb:ncuqzb_@dds-bp164725c19e29c42.mongodb.rds.aliyuncs.com:3717,dds-bp164725c19e29c41.mongodb.rds.aliyuncs.com:3717/ncuqzb?replicaSet=mgset-2699659')
 db.connection.on('error', function (err) {
   console.log('数据库链接失败:' + err)
 })
