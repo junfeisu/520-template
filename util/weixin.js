@@ -35,7 +35,7 @@ function getTicket (token) {
 function generateSignature (ticket) {
   var noncestr = 'Wm3WZYTPz0wzccnW'
   var timestamp = Math.floor(Date.now() / 1000)
-  var url = 'http://ncuqzb.ncuos.com'
+  var url = 'http://ncuqzb.ncuos.com/#/template'
   var string = 'jsapi_ticket=' + ticket + '&noncestr=' + noncestr + '&timestamp=' +
     timestamp + '&url=' + url
   var signature = sha1(string)

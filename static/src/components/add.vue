@@ -50,7 +50,7 @@
         <textarea name="profess" v-model="template.profess"></textarea>
       </div>
       <div class="add-operate">
-        <button v-if="!addSuccess" type="button" class="submit" @click="submit()">
+        <button type="button" class="submit" @click="submit()">
           提交
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
@@ -86,8 +86,7 @@
         isEdit: false,
         currentIndex: '',
         currentRecall: '',
-        showModal: false,
-        addSuccess: false
+        showModal: false
       }
     },
     methods: {
@@ -104,7 +103,6 @@
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
-            this.addSuccess = true
             this.$root.add({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
             this.showModal = true
           })
