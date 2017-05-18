@@ -24,6 +24,5 @@ export default new Router({
     path: '/template',
     name: 'template',
     component: template
-  }
-  ]
+  }]
 })

@@ -41,6 +41,7 @@
         let guide = document.querySelector('#guide')
         let hammer = new Hammer(guide)
         hammer.on('panleft', () => {
+          console.log('pan')
           if (this.step === 1) {
             this.step = 2
           } else {

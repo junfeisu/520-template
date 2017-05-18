@@ -89,19 +89,10 @@
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
-            console.log(template)
+            this.$router.push({name: 'template', query: {template_id: template.data.template_id}})
           })
           .catch(error => {
             console.log(error)
-          })
-      },
-      getTemplate (templateId) {
-        axios.get('/api/template?template_id=' + templateId)
-          .then(template => {
-            console.log(template.data)
-          })
-          .catch(err => {
-            console.log(err)
           })
       },
       updateTemplate () {
