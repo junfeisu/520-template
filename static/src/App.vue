@@ -3,7 +3,7 @@
     <remind></remind>
     <router-view></router-view>
     <footer v-if="$route.path !== '/add'">
-      <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext">NCU求职帮</a>
+      <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxMzgyODY1NQ==&scene=124#wechat_redirect">NCU求职帮</a>
     </footer>
   </div>
 </template>
