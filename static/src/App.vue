@@ -2,7 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <footer v-if="$route.path !== '/add'">
-      NCU求职帮
+      <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext">NCU求职帮</a>
     </footer>
   </div>
 </template>
@@ -14,7 +14,7 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 html {
   height: 100%;
 }
@@ -26,8 +26,6 @@ body {
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: flex;
   height: 100%;
   position: relative;
@@ -44,6 +42,13 @@ footer {
   right: 0;
   opacity: 0.2;
   font-size: 0.44rem;
-  color: #fff;
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 }
 </style>
