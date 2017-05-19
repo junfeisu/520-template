@@ -23,6 +23,7 @@
 <style lang="scss">
 html {
   height: 100%;
+  font-size: 16px;
 }
 body {
   height: 100%;
