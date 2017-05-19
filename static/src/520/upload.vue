@@ -1,7 +1,8 @@
 <template>
   <div id="upload">
     <!-- <button type="button" id="pickerfiles"　v-text="text"></button> -->
-    <img src="../assets/image/together.png" id="pickerfiles">
+    <img v-if="!photo" src="../assets/image/together.png" id="pickerfiles">
+    <img v-if="photo" :src="photo" alt="合照">
   </div>
 </template>
 
@@ -25,6 +26,12 @@
         text: '',
         upToken: '',
         access_key: 'Mnlo7G1Xa5PiY-Oxw_D9vzVIEqjRXKmB4n1uxPg-'
+      }
+    },
+    props: {
+      photo: {
+        type: String,
+        default: ''
       }
     },
     methods: {

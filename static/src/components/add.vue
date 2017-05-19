@@ -12,8 +12,7 @@
           </label>
         </div>
         <div class="love-photo">
-          <upload v-if="!template.photo"></upload>
-          <img v-if="template.photo" :src="template.photo" alt="合照">
+          <upload :photo="template.photo"></upload>
         </div>
       </div>
       <div class="together-time">
@@ -230,9 +229,12 @@
     .love-photo {
       flex: 0 0 auto;
       margin-left: 0.266667rem;
+      position: relative;
       img {
         width: 1.893333rem;
         height: 1.893333rem;
+      }
+      #upload {
       }
     }
     .together-time {
