@@ -96,16 +96,28 @@
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
+            this.$router.push({
+              name: 'template',
+              query: {
+                template_id: template.data.template_id
+              }
+            })
             this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，欢迎分享至朋友圈'})
           })
           .catch(err => {
+            console.log(err)
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
           })
       },
       updateTemplate () {
         axios.post('/api/template/update', this.template)
           .then(result => {
-            this.addSuccess = true
+            this.$router.push({
+              name: 'template',
+              query: {
+                template_id: this.template.template_id
+              }
+            })
             this.$parent.$children[0].addRemind({type: 'success', msg: '修改简历成功'})
           })
           .catch(err => {
@@ -166,8 +178,10 @@
       },
       submit () {
         if (this.$route.query.template_id) {
+          console.log('upadte')
           this.updateTemplate()
         } else {
+          console.log('add')
           this.addTemplate()
         }
       }
@@ -238,11 +252,11 @@
       flex: 0 0 auto;
       margin-left: 0.266667rem;
       position: relative;
+      width: 1.893333rem;
+      height: 1.893333rem;
       img {
         width: 1.893333rem;
         height: 1.893333rem;
-      }
-      #upload {
       }
     }
     .together-time {

@@ -44,16 +44,19 @@ route.post('/update', function (req, res) {
       photo: req.body.photo,
       profess: req.body.profess
     }
-    operate.update(templateModel, ({template_id: req.body.template_id}, {
-      $set: newTemplateMes
-    }), function (err, template) {
+    templateModel.findOneAndUpdate({template_id: req.body.template_id}, {$set: newTemplateMes}, function (err, template) {
       if (err) {
         res.status(500).json(err)
       } else {
-        if (template.n > 0) {
+        if (template.template_id === req.body.template_id) {
           res.json({
             status: 'OK',
-            msg: 'update success'
+            message: 'update success'
+          })
+        } else {
+          res.status(400).json({
+            status: 'Failer',
+            message: 'update failer'
           })
         }
       }

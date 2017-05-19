@@ -2,16 +2,22 @@
   <div id="upload">
     <!-- <button type="button" id="pickerfiles"　v-text="text"></button> -->
     <img v-if="!photo" src="../assets/image/together.png" id="pickerfiles">
-    <img v-if="photo" :src="photo" alt="合照">
+    <img class="uploaded-photo" v-if="photo" :src="photo" alt="合照">
   </div>
 </template>
 
 <style lang="scss" scoped>
   #upload {
+    display: flex;
+    align-items: center;
     width: 1.893333rem;
-    height: 1.586667rem;
+    height: 1.893333rem;
     img {
       width: 100%;
+    }
+    .uploaded-photo {
+      width: 1.893333rem;
+      height: 1.893333rem;
     }
   }
 </style>
