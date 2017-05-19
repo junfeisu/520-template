@@ -173,7 +173,10 @@
     created () {
       this.getConf()
     },
-    beforeMount () {
+    mounted () {
+      if (this.$route.query.template_id) {
+        this.getTemplate(this.$route.query.template_id)
+      }
       wx.ready(() => {
         alert('ready')
         wx.onMenuShareTimeline({
@@ -188,11 +191,6 @@
           }
         })
       })
-    },
-    mounted () {
-      if (this.$route.query.template_id) {
-        this.getTemplate(this.$route.query.template_id)
-      }
     }
   }
 </script>
