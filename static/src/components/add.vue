@@ -55,7 +55,6 @@
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
       </div>
-      <!-- <div clas="share-modal" v-if="showModal"></div> -->
     </div>
   </div>
 </template>
@@ -81,8 +80,7 @@
         showEdit: false,
         isEdit: false,
         currentIndex: '',
-        currentRecall: '',
-        showModal: false
+        currentRecall: ''
       }
     },
     methods: {
@@ -99,8 +97,7 @@
       addTemplate () {
         axios.put('/api/template/add', this.template)
           .then(template => {
-            this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，点击秀恩爱按钮分享至朋友圈即可查看简历'})
-            this.showModal = true
+            this.$parent.$children[0].addRemind({type: 'success', msg: '添加简历成功，欢迎分享至朋友圈'})
           })
           .catch(err => {
             this.$parent.$children[0].addRemind({type: 'error', msg: err.response.data.message})
@@ -168,30 +165,27 @@
         }
       }
     },
-    created () {
-      this.getConf()
-    },
     mounted () {
       if (this.$route.query.template_id) {
         this.getTemplate(this.$route.query.template_id)
       }
-      wx.ready(() => {
-        alert('ready')
-        wx.onMenuShareTimeline({
-          title: '分享520-简历',
-          link: 'http://ncuqzb.ncuos.com/#/add',
-          imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
-          trigger: function () {
-            alert('分享到朋友圈')
-          },
-          success: function () {
-            this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
-          },
-          cancel: function () {
-            this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
-          }
-        })
-      })
+      // wx.ready(() => {
+      //   alert('ready')
+      //   wx.onMenuShareTimeline({
+      //     title: '分享520-简历',
+      //     link: 'http://ncuqzb.ncuos.com/#/add',
+      //     imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+      //     trigger: function () {
+      //       alert('分享到朋友圈')
+      //     },
+      //     success: function () {
+      //       this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+      //     },
+      //     cancel: function () {
+      //       this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
+      //     }
+      //   })
+      // })
     }
   }
 </script>
