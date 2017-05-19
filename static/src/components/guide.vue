@@ -1,6 +1,5 @@
 <template>
   <div id="guide">
-    <img class="top-flower" v-if="step===1" src="../assets/image/top-flower.png">
     <img class="left-flower" src="../assets/image/left-flower.png"></img>
     <div class="step-one" v-if="step===1">
       <p>从被拒后的低落</p>
@@ -90,10 +89,6 @@
     }
     .step-two {
       transform: translate(0%, 40%);
-    }
-    .top-flower {
-      width: 7.986667rem;
-      height: 1.546667rem;
     }
     .left-flower {
       height: 7.96rem;

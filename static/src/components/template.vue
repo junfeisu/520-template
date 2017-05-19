@@ -164,7 +164,7 @@
         border: none;
         outline: none;
         color: #eb7b7b;
-        font-size: 0.56rem;
+        font-size: 0.4rem;
       }
     }
     .template-footer {
