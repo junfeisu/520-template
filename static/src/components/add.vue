@@ -55,9 +55,7 @@
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
       </div>
-      <button id="onMenuShareTimeline">分享520-简历</button>
-      </div>
-      <div class="share-modal" v-if="showModal"></div>
+      <!-- <div clas="share-modal" v-if="showModal"></div> -->
     </div>
   </div>
 </template>
@@ -181,7 +179,7 @@
         alert('ready')
         wx.onMenuShareTimeline({
           title: '分享520-简历',
-          link: 'ncuqzb.ncuos.com',
+          link: 'ncuqzb.ncuos.com/#/add',
           imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
           success: function () {
             this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
