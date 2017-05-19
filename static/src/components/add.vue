@@ -121,12 +121,20 @@
       ensure () {
         if (this.currentRecall.trim()) {
           if (this.isEdit && this.currentIndex !== '') {
-            this.template.experiences.recalls[this.currentIndex] = this.currentRecall
+            if (this.currentRecall.indexOf(1 + this.currentIndex + '.') === 0) {
+              this.template.experiences.recalls[this.currentIndex] = this.currentRecall
+            } else {
+              this.template.experiences.recalls[this.currentIndex] = 1 + this.currentIndex + '.' + this.currentRecall
+            }
             this.isEdit = false
             this.currentIndex = ''
           } else {
             let recallsLen = this.template.experiences.recalls.length
-            this.template.experiences.recalls.push(1 + recallsLen + '.' + this.currentRecall)
+            if (this.currentRecall.indexOf(1 + recallsLen + '.') === 0) {
+              this.template.experiences.recalls.push(this.currentRecall)
+            } else {
+              this.template.experiences.recalls.push(1 + recallsLen + '.' + this.currentRecall)
+            }
           }
           this.currentRecall = ''
         }
