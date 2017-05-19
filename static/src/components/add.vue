@@ -181,6 +181,9 @@
           title: '分享520-简历',
           link: 'http://ncuqzb.ncuos.com/#/add',
           imageUrl: 'http://7xrp7o.com1.z0.glb.clouddn.com/sjfblog.png',
+          trigger: function () {
+            alert('分享到朋友圈')
+          },
           success: function () {
             this.$parent.$children[0].addRemind({type: 'success', msg: 'success'})
           },
