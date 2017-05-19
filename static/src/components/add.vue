@@ -50,7 +50,7 @@
       </div>
       <div class="add-operate">
         <button type="button" class="submit" @click="submit()">
-          提交
+          {{$route.query.template_id ? '更新' : '提交'}}
           <img class="add-btn-heart" src="../assets/image/add-btn-heart.png">
         </button>
       </div>
@@ -354,7 +354,7 @@
       }
     }
     .profess {
-      margin-top: 2.2rem;
+      margin-top: 2.0rem;
       color: #eb7b7b;
       font-size: 0.44rem;
       .profess-title {
