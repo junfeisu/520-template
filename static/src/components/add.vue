@@ -382,7 +382,7 @@
         outline: none;
         line-height: 0.94rem;
         border-radius: 0.586667rem;
-        font-size: 0.56rem;
+        font-size: 0.3rem;
         .add-btn-heart {
           position: absolute;
           left: -0.493333rem;
@@ -401,6 +401,7 @@
     outline: none;
     padding-left: 0.233333rem;
     padding-top: 0.133333rem;
+    font-size: 0.3rem;
   }
 
   .add-container {
