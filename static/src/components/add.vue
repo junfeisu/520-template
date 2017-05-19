@@ -342,7 +342,7 @@
         button {
           border: none;
           border-radius: 0.213333rem;
-          width: 1.053333rem;
+          width: 1.53333rem;
           height: 0.56rem;
           font-size: 0.3rem;
           background: #fff;
@@ -382,7 +382,7 @@
         outline: none;
         line-height: 0.94rem;
         border-radius: 0.586667rem;
-        font-size: 0.3rem;
+        font-size: 0.4rem;
         .add-btn-heart {
           position: absolute;
           left: -0.493333rem;
@@ -401,7 +401,7 @@
     outline: none;
     padding-left: 0.233333rem;
     padding-top: 0.133333rem;
-    font-size: 0.3rem;
+    font-size: 0.4rem;
   }
 
   .add-container {
