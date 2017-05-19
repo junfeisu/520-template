@@ -5,7 +5,7 @@
     <footer v-if="$route.path !== '/add'">
       <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxMzgyODY1NQ==&scene=124#wechat_redirect">NCU求职帮</a>
     </footer>
-    <audio id="audio" src="background-music.mp3" autoloop controls></audio>
+    <audio id="audio" src="background-music.mp3" autoloop controls hidden="true"></audio>
   </div>
 </template>
 
@@ -13,9 +13,17 @@
   import './../lib/flexible.js'
   export default {
     name: 'app',
+    methods: {
+      play () {
+        let audio = document.querySelector('#audio')
+        audio.play()
+      }
+    },
     mounted () {
-      let audio = document.querySelector('#audio')
-      audio.play()
+      let html = document.querySelector('html')
+      html.ontouchstart = () => {
+        this.play()
+      }
     }
   }
 </script>
@@ -58,9 +66,5 @@ footer {
       text-decoration: none;
     }
   }
-}
-
-#audio {
-  display: none;
 }
 </style>
