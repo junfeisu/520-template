@@ -244,6 +244,7 @@
         outline: none;
         padding-left: 0.133333rem;
         margin-left: 0.48rem;
+        font-size: 0.3rem;
       }
     }
     .love-photo {

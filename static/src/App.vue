@@ -24,6 +24,7 @@
 html {
   height: 100%;
   font-size: 75px;
+  max-height: 99999px;
 }
 body {
   height: 100%;
