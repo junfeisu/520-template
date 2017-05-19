@@ -23,6 +23,7 @@
         <p>让我们一起心动到古稀</p>
       </div>
     </transition>
+    <img class="arrow" src="../assets/image/arrow.png">
     <img class="right-flower" src="../assets/image/right-flower.png" alt="">
   </div>
 </template>
@@ -39,7 +40,9 @@
     methods: {
       init () {
         let guide = document.querySelector('#guide')
+        let arrow = document.querySelector('.arrow')
         let hammer = new Hammer(guide)
+        let arrowHammer = new Hammer(arrow)
         let time = 0
         hammer.on('panleft', () => {
           if (this.step === 1) {
@@ -53,6 +56,13 @@
         })
         hammer.on('panright', () => {
           this.step = 1
+        })
+        arrowHammer.on('tap', () => {
+          if (this.step === 1) {
+            this.step = 2
+          } else {
+            this.$router.push({name: 'start'})
+          }
         })
       }
     },
@@ -98,6 +108,16 @@
       position: absolute;
       right: 0.533333rem;
       bottom: 1.0rem;
+    }
+    .arrow {
+      width: 1.333333rem;
+      height: 1.333333rem;
+      position: absolute;
+      left: 4.333333rem;
+      bottom: 2.666667rem;
+      transform: rotate(270deg);
+      z-index: 99;
+      opacity: 0.6;
     }
     .slide-enter-active .slide-leave-active {
       transition: all 10s;
