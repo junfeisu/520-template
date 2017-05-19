@@ -22,17 +22,9 @@
     methods: {
       init () {
         let startBtn = document.querySelector('.start-btn')
-        let start = document.querySelector('#start')
         let hammer = new Hammer(startBtn)
-        let startHammer = new Hammer(start)
         hammer.on('tap', () => {
-          console.log('tao')
           this.$router.push({name: 'add'})
-          // this.$router.go({path: '/add'})
-        })
-        startHammer.on('panright', () => {
-          console.log('123')
-          this.$router.push({name: 'guide'})
         })
       }
     },

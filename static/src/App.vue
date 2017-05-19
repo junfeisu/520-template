@@ -5,7 +5,7 @@
     <footer v-if="$route.path !== '/add'">
       <a class="link" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxMzgyODY1NQ==&scene=124#wechat_redirect">NCU求职帮</a>
     </footer>
-    <!-- <audio id="audio" src="background-music.mp3" autobuffer autoloop loop controls></audio> -->
+    <!-- <audio id="audio" src="background-music.mp3" autoloop controls></audio> -->
   </div>
 </template>
 

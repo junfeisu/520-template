@@ -40,18 +40,19 @@
       init () {
         let guide = document.querySelector('#guide')
         let hammer = new Hammer(guide)
+        let time = 0
         hammer.on('panleft', () => {
-          console.log('pan')
           if (this.step === 1) {
             this.step = 2
+            time = Math.floor(Date.now() / 1000)
           } else {
-            this.$router.push({name: 'start'})
+            if (Math.floor(Date.now() / 1000) - time > 0.6) {
+              this.$router.push({name: 'start'})
+            }
           }
         })
         hammer.on('panright', () => {
-          if (this.step === 2) {
-            this.step = 1
-          }
+          this.step = 1
         })
       }
     },

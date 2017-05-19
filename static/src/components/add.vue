@@ -178,10 +178,8 @@
       },
       submit () {
         if (this.$route.query.template_id) {
-          console.log('upadte')
           this.updateTemplate()
         } else {
-          console.log('add')
           this.addTemplate()
         }
       }
